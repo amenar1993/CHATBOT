@@ -31,7 +31,7 @@
 	</head>
 	<body>
 		<div class="container">
-			<h2>SOQUETE CHAT</h2>
+			<h2>CHAT :)</h2>
 			<div class="form-group">
 				<input
 					type="text"
@@ -39,7 +39,7 @@
 					id="userInput"
 					placeholder="Enter your question" />
 			</div>
-			<button class="btn btn-success" onclick="sendMessage()">Ask!</button>
+			<button class="btn btn-success" onclick="sendMessage()">Consultar</button>
 			<div id="response"></div>
 		</div>
 		<script>
@@ -47,7 +47,7 @@
 				const input = document.getElementById('userInput').value;
 				const responseDiv = document.getElementById('response');
 				if (!input) {
-					responseDiv.innerHTML = 'Please enter a message.';
+					responseDiv.innerHTML = 'Ingrese su consulta.';
 					return;
 				}
 				responseDiv.innerHTML = 'Loading...';
