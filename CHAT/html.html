@@ -3,48 +3,50 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Mi PWA</title>
-    
-    <!-- Meta tags para PWA en iOS -->
-    <meta name="theme-color" content="#2196F3">
-    <meta name="apple-mobile-web-app-capable" content="yes">
-    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-    <meta name="apple-mobile-web-app-title" content="Mi PWA">
-    <link rel="apple-touch-icon" href="icon-192.png">
-    
-    <!-- Manifiesto PWA -->
+    <title>Mi APP PRUEBA</title>
     <link rel="manifest" href="manifest.json">
-
-    <!-- Estilos -->
+    <meta name="theme-color" content="#2196F3">
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-    <h1>Bienvenido a mi PWA</h1>
+    <h1>Bienvenido a Mi APP PRUEBA</h1>
     <p>Agrega esta app a tu pantalla de inicio.</p>
-    
-    <!-- Botón de instalación -->
-    <button id="install-button" style="display:none;">Instalar App</button>
-    
+
+    <!-- Botón de instalación para iOS -->
+    <button id="ios-install-button" style="display:none;">Añadir a la pantalla de inicio</button>
+    <p id="ios-guide" style="display:none;">Para añadir esta aplicación a la pantalla de inicio, presiona el ícono de compartir en Safari y luego selecciona "Añadir a la pantalla de inicio".</p>
+
     <script>
-        // Registro del Service Worker
-        if ('serviceWorker' in navigator) {
-            navigator.serviceWorker.register('service-worker.js')
-            .then(reg => console.log('Service Worker registrado', reg))
-            .catch(err => console.log('Error en registro de Service Worker', err));
+        // Mostrar el botón y la guía en iOS
+        if (navigator.userAgent.includes('iPhone') || navigator.userAgent.includes('iPad')) {
+            // Mostrar el botón y la guía para usuarios de iOS
+            document.getElementById('ios-install-button').style.display = 'block';
+            document.getElementById('ios-guide').style.display = 'block';
+
+            // Agregar evento de clic en el botón
+            document.getElementById('ios-install-button').addEventListener('click', function() {
+                alert("Para añadir esta app, ve a Safari, toca el ícono de compartir, y luego selecciona 'Añadir a la pantalla de inicio'.");
+            });
         }
 
-        // Manejo de la instalación de la PWA
+        // Comprobación de soporte de Service Worker y el botón de instalación en otros navegadores
+        if ('serviceWorker' in navigator) {
+            navigator.serviceWorker.register('service-worker.js')
+                .then(reg => console.log('Service Worker registrado', reg))
+                .catch(err => console.log('Error en registro de Service Worker', err));
+        }
+
         let deferredPrompt;
 
         window.addEventListener('beforeinstallprompt', (event) => {
             event.preventDefault();
             deferredPrompt = event;
-            document.getElementById('install-button').style.display = 'block'; // Muestra el botón
+            document.getElementById('install-button').style.display = 'block';
         });
 
         document.getElementById('install-button').addEventListener('click', () => {
             if (deferredPrompt) {
-                deferredPrompt.prompt(); // Muestra el diálogo de instalación
+                deferredPrompt.prompt();
                 deferredPrompt.userChoice.then(choiceResult => {
                     if (choiceResult.outcome === 'accepted') {
                         console.log('Usuario instaló la app');
