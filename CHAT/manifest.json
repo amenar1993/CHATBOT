@@ -1,6 +1,6 @@
 {
-    "name": "Mi PWA",
-    "short_name": "PWA",
+    "name": "Mi APP PRUEBA",
+    "short_name": "Mi APP PRUEBA",
     "start_url": "/CHATBOT/CHAT/html.html",
     "display": "standalone",
     "background_color": "#ffffff",
