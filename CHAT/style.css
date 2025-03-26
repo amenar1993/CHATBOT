@@ -1,0 +1,38 @@
+/* Estilos básicos para la PWA */
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f4f4f4;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+h1 {
+    color: #2196F3;
+    text-align: center;
+}
+
+p {
+    font-size: 18px;
+    text-align: center;
+    color: #555;
+}
+
+#install-button {
+    display: none;
+    background-color: #2196F3;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    font-size: 16px;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-top: 20px;
+}
+
+#install-button:hover {
+    background-color: #1976D2;
+}
