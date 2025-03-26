@@ -1,10 +1,11 @@
 {
     "name": "Mi PWA",
     "short_name": "PWA",
-    "start_url": "/",
+    "start_url": "/CHATBOT/CHAT/html.html",
     "display": "standalone",
     "background_color": "#ffffff",
     "theme_color": "#2196F3",
+    "description": "Una app que abre mi página web",
     "icons": [
         {
             "src": "icon-192.png",
