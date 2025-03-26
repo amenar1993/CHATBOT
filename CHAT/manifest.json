@@ -1,7 +1,7 @@
 {
-    "name": "Mi APP PRUEBA",
-    "short_name": "Mi APP PRUEBA",
-    "start_url": "https://www.google.com",  // La URL donde deseas que inicie la PWA
+    "name": "Mi PWA",
+    "short_name": "PWA",
+    "start_url": "/CHATBOT/CHAT/html.html",
     "display": "standalone",
     "background_color": "#ffffff",
     "theme_color": "#2196F3",
