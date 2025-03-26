@@ -4,34 +4,47 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Mi PWA</title>
-    <link rel="manifest" href="manifest.json">
+    
+    <!-- Meta tags para PWA en iOS -->
     <meta name="theme-color" content="#2196F3">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="apple-mobile-web-app-title" content="Mi PWA">
+    <link rel="apple-touch-icon" href="icon-192.png">
+    
+    <!-- Manifiesto PWA -->
+    <link rel="manifest" href="manifest.json">
+
+    <!-- Estilos -->
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
     <h1>Bienvenido a mi PWA</h1>
     <p>Agrega esta app a tu pantalla de inicio.</p>
     
-    <button id="install-button">Instalar App</button>
+    <!-- Botón de instalación -->
+    <button id="install-button" style="display:none;">Instalar App</button>
     
     <script>
+        // Registro del Service Worker
         if ('serviceWorker' in navigator) {
             navigator.serviceWorker.register('service-worker.js')
             .then(reg => console.log('Service Worker registrado', reg))
             .catch(err => console.log('Error en registro de Service Worker', err));
         }
 
+        // Manejo de la instalación de la PWA
         let deferredPrompt;
 
         window.addEventListener('beforeinstallprompt', (event) => {
             event.preventDefault();
             deferredPrompt = event;
-            document.getElementById('install-button').style.display = 'block';
+            document.getElementById('install-button').style.display = 'block'; // Muestra el botón
         });
 
         document.getElementById('install-button').addEventListener('click', () => {
             if (deferredPrompt) {
-                deferredPrompt.prompt();
+                deferredPrompt.prompt(); // Muestra el diálogo de instalación
                 deferredPrompt.userChoice.then(choiceResult => {
                     if (choiceResult.outcome === 'accepted') {
                         console.log('Usuario instaló la app');
